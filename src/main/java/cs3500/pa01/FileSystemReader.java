@@ -20,7 +20,7 @@ public abstract class FileSystemReader<T> {
   }
 
   /**
-   * Adds a given file to the list of files
+   * Adds a given file to the list of files.
    *
    * @param file to be added
    */
