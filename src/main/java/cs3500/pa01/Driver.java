@@ -4,12 +4,26 @@ package cs3500.pa01;
  * This is the main driver of this project.
  */
 public class Driver {
-  /**
-   * Project entry point
-   *
-   * @param args - no command line args required
-   */
-  public static void main(String[] args) {
-    System.out.println("Hello from PA01 Template Repo");
-  }
+    /**
+     * Project entry point
+     *
+     * @param args - input path, sort order (n, c, m), output path
+     */
+
+    public static void main(String[] args) {
+        if (args.length <= 2) {
+            System.out.println("Please enter an \n" +
+                "[input path], \n" +
+                "[sort order (n - name, c - date created, m - date modified)], and an \n" +
+                "[output path]");
+        } else {
+            try {
+                StudyGuideGenerator sgg =
+                    new StudyGuideGenerator(args[0], SortOrder.getSortOrder(args[1]), args[2]);
+                sgg.generateStudyGuide();
+            } catch (Exception e) {
+                System.out.println("Invalid Input");
+            }
+        }
+    }
 }

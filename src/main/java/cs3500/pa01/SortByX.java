@@ -12,5 +12,5 @@ public interface SortByX extends Comparator<MarkDown> {
    * @param m2 the second object to be compared.
    * @return integer representing the order of the two MarkDowns
    */
-  public int compare(MarkDown m1, MarkDown m2);
+  int compare(MarkDown m1, MarkDown m2);
 }

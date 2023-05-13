@@ -1,30 +1,52 @@
 package cs3500.pa01;
 
 import java.io.IOException;
+import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
 import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class FileSystemReader<T> {
-  ArrayList<T> files = new ArrayList<>();
-  Scanner input;
-  Path startPath;
+/**
+ * Abstract class to read and process the file system
+ */
+public abstract class FileSystemReader implements FileVisitor<Path> {
+    private ArrayList<FileType> files = new ArrayList<>();
 
-  FileSystemReader(String path) {
-    this.startPath = Path.of(path);
-    try {
-      this.input = new Scanner(startPath);
-    } catch (IOException err) {
-      System.err.println("File not found");
+
+    /**
+     * Adds a given file to the list of files.
+     *
+     * @param file to be added
+     */
+    public void addFile(FileType file) {
+        this.files.add(file);
     }
-  }
 
-  /**
-   * Adds a given file to the list of files.
-   *
-   * @param file to be added
-   */
-  public void addFile(T file) {
-    this.files.add(file);
-  }
+    @Override
+    public abstract FileVisitResult visitFile(Path filePath, BasicFileAttributes attr);
+
+    public abstract void readFile(Path filePath, BasicFileAttributes attr);
+
+    @Override
+    public FileVisitResult postVisitDirectory(Path dir, IOException exec) {
+        return FileVisitResult.CONTINUE;
+    }
+
+    @Override
+    public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
+        throws IOException {
+        return FileVisitResult.CONTINUE;
+    }
+
+    @Override
+    public FileVisitResult visitFileFailed(Path file, IOException exc) {
+        System.err.println(exc);
+        return FileVisitResult.CONTINUE;
+    }
+
+    public ArrayList<FileType> getFiles() {
+        return this.files;
+    }
 }
