@@ -79,6 +79,12 @@ public class MarkDown extends FileType {
     return result.toString();
   }
 
+
+  /**
+   * Returns the list of MarkDownUnits of this MarkDown
+   *
+   * @return the list of MarkDownUnits of this MarkDown
+   */
   public ArrayList<MarkDownUnit> getUnits() {
     return this.listOfMarkDown;
   }

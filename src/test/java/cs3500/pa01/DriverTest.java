@@ -30,15 +30,15 @@ class DriverTest {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    assertEquals(sb.toString(), "# Java\n"
+    assertEquals(sb.toString(), "# Java Arrays\n"
         + "- An **array** is a collection of variables of the same type\n"
         + "\n"
-        + "## Declaring\n"
+        + "## Declaring an Array\n"
         + "- General Form: type[] arrayName;\n"
         + "- only creates a reference\n"
         + "- no array has\n"
         + "\n"
-        + "## Creating\n"
+        + "## Creating an Array (Instantiation)\n"
         + "- General form:  arrayName = new type[numberOfElements];\n"
         + "- numberOfElements must be a positive Integer.\n"
         + "- Gotcha: Array size is not  modifiable once instantiated.\n"
@@ -46,11 +46,11 @@ class DriverTest {
         + "# Vectors\n"
         + "- Vectors act like a resizable array\n"
         + "\n"
-        + "## Declaring\n"
+        + "## Declaring a vector\n"
         + "- General Form: Vector<type> v = new Vector();\n"
         + "- type needs to be a valid reference type\n"
         + "\n"
-        + "## Adding\n"
+        + "## Adding an element to a vector\n"
         + "- v.add(object of type);\n"
         + "\n");
     assertTrue(name.delete());

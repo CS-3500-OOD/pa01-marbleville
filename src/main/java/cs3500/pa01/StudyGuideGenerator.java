@@ -8,10 +8,10 @@ import java.nio.file.Path;
  * Coordinates the generation of a study guide
  */
 public class StudyGuideGenerator {
-  MarkDown studyGuide;
-  MarkDownReader markDownReader;
-  Path inputPath;
-  Writer fileWriter;
+  private MarkDown studyGuide;
+  private MarkDownReader markDownReader;
+  private Path inputPath;
+  private Writer fileWriter;
 
   /**
    * Constructs a StudyGuideGenerator

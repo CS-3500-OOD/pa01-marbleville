@@ -56,7 +56,14 @@ public class MarkDownUnit {
     if (s.startsWith("#")) {
       String[] lineArray = s.split(" ");
       tag = lineArray[0];
-      text = lineArray[1];
+      StringBuilder sb = new StringBuilder();
+      for (String str : lineArray) {
+        if (!str.equals(tag)) {
+          sb.append(str);
+          sb.append(" ");
+        }
+      }
+      text = sb.toString().trim();
     } else if (s.startsWith("[[")) {
       tag = "[[";
       text = s.substring(s.indexOf("[[") + 2, s.indexOf("]]"));

@@ -66,4 +66,25 @@ public abstract class FileType {
    * @param file the string to be parsed
    */
   public abstract void parseFile(String file);
+
+  /**
+   * Sets the name of this FileType object
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  /**
+   * Sets the last modified date of this FileType object
+   */
+  public void setCreated(FileTime created) {
+    this.created = created;
+  }
+
+  /**
+   * Sets the last modified date of this FileType object
+   */
+  public void setLastModified(FileTime lastModified) {
+    this.lastModified = lastModified;
+  }
 }

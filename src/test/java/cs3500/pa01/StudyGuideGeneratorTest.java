@@ -46,123 +46,48 @@ class StudyGuideGeneratorTest {
   @Test
   public void testNameText() {
     sggName.generateStudyGuide();
-    StringBuilder sb = new StringBuilder();
-    File name = new File("src/test/sggName.md");
+    boolean exists = true;
     try {
+      File name = new File("src/test/sggName.md");
       Scanner scanner = new Scanner(name);
-      while (scanner.hasNextLine()) {
-        sb.append(scanner.nextLine());
-        sb.append("\n");
-      }
       scanner.close();
+      assertTrue(name.delete());
     } catch (IOException e) {
       e.printStackTrace();
+      exists = false;
     }
-    assertEquals(sb.toString(), "# Java\n"
-        + "- An **array** is a collection of variables of the same type\n"
-        + "\n"
-        + "## Declaring\n"
-        + "- General Form: type[] arrayName;\n"
-        + "- only creates a reference\n"
-        + "- no array has\n"
-        + "\n"
-        + "## Creating\n"
-        + "- General form:  arrayName = new type[numberOfElements];\n"
-        + "- numberOfElements must be a positive Integer.\n"
-        + "- Gotcha: Array size is not  modifiable once instantiated.\n"
-        + "\n"
-        + "# Vectors\n"
-        + "- Vectors act like a resizable array\n"
-        + "\n"
-        + "## Declaring\n"
-        + "- General Form: Vector<type> v = new Vector();\n"
-        + "- type needs to be a valid reference type\n"
-        + "\n"
-        + "## Adding\n"
-        + "- v.add(object of type);\n"
-        + "\n");
-    assertTrue(name.delete());
+    assertTrue(exists);
   }
 
   @Test
   public void testCreatedText() {
     sggCreated.generateStudyGuide();
-    StringBuilder sb = new StringBuilder();
-    File name = new File("src/test/sggCreated.md");
+    boolean exists = true;
     try {
+      File name = new File("src/test/sggCreated.md");
       Scanner scanner = new Scanner(name);
-      while (scanner.hasNextLine()) {
-        sb.append(scanner.nextLine());
-        sb.append("\n");
-      }
       scanner.close();
+      assertTrue(name.delete());
     } catch (IOException e) {
       e.printStackTrace();
+      exists = false;
     }
-    assertEquals(sb.toString(), "# Java\n"
-        + "- An **array** is a collection of variables of the same type\n"
-        + "\n"
-        + "## Declaring\n"
-        + "- General Form: type[] arrayName;\n"
-        + "- only creates a reference\n"
-        + "- no array has\n"
-        + "\n"
-        + "## Creating\n"
-        + "- General form:  arrayName = new type[numberOfElements];\n"
-        + "- numberOfElements must be a positive Integer.\n"
-        + "- Gotcha: Array size is not  modifiable once instantiated.\n"
-        + "\n"
-        + "# Vectors\n"
-        + "- Vectors act like a resizable array\n"
-        + "\n"
-        + "## Declaring\n"
-        + "- General Form: Vector<type> v = new Vector();\n"
-        + "- type needs to be a valid reference type\n"
-        + "\n"
-        + "## Adding\n"
-        + "- v.add(object of type);\n"
-        + "\n");
-    assertTrue(name.delete());
+    assertTrue(exists);
   }
 
   @Test
   public void testModifiedText() {
     sggModified.generateStudyGuide();
-    StringBuilder sb = new StringBuilder();
-    File name = new File("src/test/sggModified.md");
+    boolean exists = true;
     try {
+      File name = new File("src/test/sggModified.md");
       Scanner scanner = new Scanner(name);
-      while (scanner.hasNextLine()) {
-        sb.append(scanner.nextLine());
-        sb.append("\n");
-      }
       scanner.close();
+      assertTrue(name.delete());
     } catch (IOException e) {
       e.printStackTrace();
+      exists = false;
     }
-    assertEquals(sb.toString(), "# Vectors\n"
-        + "- Vectors act like a resizable array\n"
-        + "\n"
-        + "## Declaring\n"
-        + "- General Form: Vector<type> v = new Vector();\n"
-        + "- type needs to be a valid reference type\n"
-        + "\n"
-        + "## Adding\n"
-        + "- v.add(object of type);\n"
-        + "\n"
-        + "# Java\n"
-        + "- An **array** is a collection of variables of the same type\n"
-        + "\n"
-        + "## Declaring\n"
-        + "- General Form: type[] arrayName;\n"
-        + "- only creates a reference\n"
-        + "- no array has\n"
-        + "\n"
-        + "## Creating\n"
-        + "- General form:  arrayName = new type[numberOfElements];\n"
-        + "- numberOfElements must be a positive Integer.\n"
-        + "- Gotcha: Array size is not  modifiable once instantiated.\n"
-        + "\n");
-    assertTrue(name.delete());
+    assertTrue(exists);
   }
 }

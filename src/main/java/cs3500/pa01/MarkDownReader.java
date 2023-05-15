@@ -27,6 +27,12 @@ public class MarkDownReader extends FileSystemReader<MarkDown> {
     return FileVisitResult.CONTINUE;
   }
 
+  /**
+   * Reads in a file and creates a MarkDown file to add to the list of files.
+   *
+   * @param filePath the path of the file
+   * @param attr     the attributes of the file
+   */
   public void readFile(Path filePath, BasicFileAttributes attr) {
     String[] pathArr = filePath.toString().split("/");
     String fileName = pathArr[pathArr.length - 1];
