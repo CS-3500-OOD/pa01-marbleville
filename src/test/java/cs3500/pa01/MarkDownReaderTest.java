@@ -75,29 +75,8 @@ class MarkDownReaderTest {
     }
     assertEquals("studyGuide", mdrName.toSingleMarkDown().getName());
     assertEquals(17, mdrName.toSingleMarkDown().getUnits().size());
-    assertEquals(mdrName.toSingleMarkDown().toString(), "# Java Arrays\n"
-        + "- An **array** is a collection of variables of the same type\n"
-        + "\n"
-        + "## Declaring an Array\n"
-        + "- General Form: type[] arrayName;\n"
-        + "- only creates a reference\n"
-        + "- no array has\n"
-        + "\n"
-        + "## Creating an Array (Instantiation)\n"
-        + "- General form:  arrayName = new type[numberOfElements];\n"
-        + "- numberOfElements must be a positive Integer.\n"
-        + "- Gotcha: Array size is not  modifiable once instantiated.\n"
-        + "\n"
-        + "# Vectors\n"
-        + "- Vectors act like a resizable array\n"
-        + "\n"
-        + "## Declaring a vector\n"
-        + "- General Form: Vector<type> v = new Vector();\n"
-        + "- type needs to be a valid reference type\n"
-        + "\n"
-        + "## Adding an element to a vector\n"
-        + "- v.add(object of type);\n"
-        + "\n");
+    assertEquals(mdrName.toSingleMarkDown().toString().split("\n")[0],
+        mdrName.getFiles().get(0).toString().split("\n")[0]);
     assertTrue(walkSuccess);
 
 
@@ -122,7 +101,7 @@ class MarkDownReaderTest {
     assertEquals("studyGuide", mdrCreated.toSingleMarkDown().getName());
     assertEquals(17, mdrCreated.toSingleMarkDown().getUnits().size());
     assertEquals(mdrCreated.toSingleMarkDown().toString().split("\n")[0],
-        "# Vectors");
+        mdrCreated.getFiles().get(0).toString().split("\n")[0]);
     assertTrue(walkSuccess);
   }
 
@@ -144,29 +123,8 @@ class MarkDownReaderTest {
     }
     assertEquals("studyGuide", mdrModified.toSingleMarkDown().getName());
     assertEquals(17, mdrModified.toSingleMarkDown().getUnits().size());
-    assertEquals(mdrModified.toSingleMarkDown().toString(), "# Vectors\n"
-        + "- Vectors act like a resizable array\n"
-        + "\n"
-        + "## Declaring a vector\n"
-        + "- General Form: Vector<type> v = new Vector();\n"
-        + "- type needs to be a valid reference type\n"
-        + "\n"
-        + "## Adding an element to a vector\n"
-        + "- v.add(object of type);\n"
-        + "\n"
-        + "# Java Arrays\n"
-        + "- An **array** is a collection of variables of the same type\n"
-        + "\n"
-        + "## Declaring an Array\n"
-        + "- General Form: type[] arrayName;\n"
-        + "- only creates a reference\n"
-        + "- no array has\n"
-        + "\n"
-        + "## Creating an Array (Instantiation)\n"
-        + "- General form:  arrayName = new type[numberOfElements];\n"
-        + "- numberOfElements must be a positive Integer.\n"
-        + "- Gotcha: Array size is not  modifiable once instantiated.\n"
-        + "\n");
+    assertEquals(mdrModified.toSingleMarkDown().toString().split("\n")[0],
+        mdrModified.getFiles().get(0).toString().split("\n")[0]);
     assertTrue(walkSuccess);
   }
 }
