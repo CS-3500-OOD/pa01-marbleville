@@ -8,7 +8,7 @@ import java.nio.file.Path;
  * Writes a file to the given path.
  */
 public class Writer {
-  private Path outPutPath;
+  private Path outputPath;
 
   /**
    * Constructs a Writer object
@@ -16,7 +16,7 @@ public class Writer {
    * @param path the path to write the file to
    */
   public Writer(String path) {
-    this.outPutPath = Path.of(path);
+    this.outputPath = Path.of(path);
   }
 
   /**
@@ -26,10 +26,10 @@ public class Writer {
    */
   public void writeFile(FileType file) {
     try {
-      FileWriter myWriter = new FileWriter(outPutPath.toString());
+      FileWriter myWriter = new FileWriter(outputPath.toString());
       myWriter.write(file.toString());
       myWriter.close();
-      System.out.println("Successfully wrote study guide to " + outPutPath.toString());
+      System.out.println("Successfully wrote study guide to " + outputPath.toString());
     } catch (IOException e) {
       System.out.println(FileSystemReader.errorMessage(e));
       e.printStackTrace();

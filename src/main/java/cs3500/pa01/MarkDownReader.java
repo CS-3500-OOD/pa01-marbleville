@@ -13,7 +13,6 @@ import java.util.Scanner;
  */
 public class MarkDownReader extends FileSystemReader<MarkDown> {
   private SortByX sortBy;
-  private SortOrder sortOrder;
 
   public MarkDownReader(SortOrder sortBy) {
     this.sortBy = sortBy.getSortBy();
@@ -62,7 +61,7 @@ public class MarkDownReader extends FileSystemReader<MarkDown> {
             FileTime.from(Instant.now()));
     for (MarkDown file : this.getFiles()) {
       for (MarkDownUnit unit : file.getUnits()) {
-        md.addMDUnit(unit);
+        md.addMarkDownUnit(unit);
       }
     }
     return md;

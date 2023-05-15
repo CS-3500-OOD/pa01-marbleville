@@ -1,5 +1,8 @@
 package cs3500.pa01;
 
+/**
+ * Prestates a sort by name comparison.
+ */
 public class SortByName implements SortByX {
   /**
    * Orders m1 and m2 based on name.

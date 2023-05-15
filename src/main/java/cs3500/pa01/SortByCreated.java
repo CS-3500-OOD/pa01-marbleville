@@ -1,5 +1,8 @@
 package cs3500.pa01;
 
+/**
+ * Represents a sort by date created comparison.
+ */
 public class SortByCreated implements SortByX {
   /**
    * Orders m1 and m2 based on date created.

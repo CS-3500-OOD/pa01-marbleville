@@ -45,10 +45,21 @@ public abstract class FileSystemReader<T> implements FileVisitor<Path> {
     return FileVisitResult.CONTINUE;
   }
 
+  /**
+   * Returns the list of files.
+   *
+   * @return list of files
+   */
   public ArrayList<T> getFiles() {
     return this.files;
   }
 
+  /**
+   * Returns an error message.
+   *
+   * @param err the error
+   * @return the error message
+   */
   public static String errorMessage(IOException err) {
     return err.toString();
   }

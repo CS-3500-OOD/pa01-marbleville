@@ -1,12 +1,13 @@
 package cs3500.pa01;
 
-import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
-import java.util.Date;
 
+/**
+ * Represents a MarkDown file with text and tags
+ */
 public class MarkDown extends FileType {
-  private ArrayList<MarkDownUnit> listOfMD = new ArrayList<>();
+  private ArrayList<MarkDownUnit> listOfMarkDown = new ArrayList<>();
 
   public MarkDown(String name, FileTime created, FileTime lastModified) {
     super(name, created, lastModified);
@@ -16,7 +17,6 @@ public class MarkDown extends FileType {
    * Parses a string into a MarkDown object
    *
    * @param file the string to be parsed
-   * @return A MarkDown object with the data from the given string
    */
   public void parseFile(String file) {
     String[] mdArray = file.split("\n");
@@ -37,8 +37,8 @@ public class MarkDown extends FileType {
    *
    * @param mdUnit the MarkDownUnit to be added
    */
-  public void addMDUnit(MarkDownUnit mdUnit) {
-    this.listOfMD.add(mdUnit);
+  public void addMarkDownUnit(MarkDownUnit mdUnit) {
+    this.listOfMarkDown.add(mdUnit);
   }
 
   /**
@@ -54,20 +54,25 @@ public class MarkDown extends FileType {
         s += "]]";
       }
       if (s.startsWith("#") || s.startsWith("[[")) {
-        this.addMDUnit(MarkDownUnit.stringToMarkDownUnit(s));
+        this.addMarkDownUnit(MarkDownUnit.stringToMarkDownUnit(s));
       }
     }
   }
 
+  /**
+   * Returns the string representation of this MarkDown
+   *
+   * @return the string representation of this MarkDown
+   */
   public String toString() {
     StringBuilder result = new StringBuilder();
-    for (int i = 0; i < this.listOfMD.size(); i++) {
+    for (int i = 0; i < this.listOfMarkDown.size(); i++) {
 
-      if (i == listOfMD.size() - 1 || listOfMD.get(i + 1).getTag().contains("#")) {
-        String unitString = this.listOfMD.get(i).toString() + "\n";
+      if (i == listOfMarkDown.size() - 1 || listOfMarkDown.get(i + 1).getTag().contains("#")) {
+        String unitString = this.listOfMarkDown.get(i).toString() + "\n";
         result.append(unitString);
       } else {
-        String unitString = this.listOfMD.get(i).toString();
+        String unitString = this.listOfMarkDown.get(i).toString();
         result.append(unitString);
       }
     }
@@ -75,6 +80,6 @@ public class MarkDown extends FileType {
   }
 
   public ArrayList<MarkDownUnit> getUnits() {
-    return this.listOfMD;
+    return this.listOfMarkDown;
   }
 }

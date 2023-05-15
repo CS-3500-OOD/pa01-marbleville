@@ -13,12 +13,22 @@ public class StudyGuideGenerator {
   Path inputPath;
   Writer fileWriter;
 
+  /**
+   * Constructs a StudyGuideGenerator
+   *
+   * @param inputPath  the path to the input directory
+   * @param sortBy     the sort order
+   * @param outputPath the path to the output file
+   */
   public StudyGuideGenerator(String inputPath, SortOrder sortBy, String outputPath) {
     this.markDownReader = new MarkDownReader(sortBy);
     this.inputPath = Path.of(inputPath);
     this.fileWriter = new Writer(outputPath);
   }
 
+  /**
+   * Generates and writes a study guide
+   */
   public void generateStudyGuide() {
     try {
       Files.walkFileTree(inputPath, markDownReader);

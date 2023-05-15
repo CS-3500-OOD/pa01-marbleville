@@ -29,9 +29,9 @@ public class Driver {
    * @return a help message for the user
    */
   public static String helpMessage() {
-    return "Please enter an \n" +
-        "[input path], \n" +
-        "[sort order (n - name, c - date created, m - date modified)], and an \n" +
-        "[output path]";
+    return "Please enter an \n"
+        + "[input path], \n"
+        + "[sort order (n - name, c - date created, m - date modified)], and an \n"
+        + "[output path]";
   }
 }

@@ -36,9 +36,9 @@ class MarkDownTest {
   @Test
   public void testToString() {
     assertEquals("", md.toString());
-    md.addMDUnit(new MarkDownUnit("Test", "#"));
+    md.addMarkDownUnit(new MarkDownUnit("Test", "#"));
     assertEquals("# Test\n\n", md.toString());
-    md.addMDUnit(new MarkDownUnit("Test1", "[["));
+    md.addMarkDownUnit(new MarkDownUnit("Test1", "[["));
     assertEquals("# Test\n- Test1\n\n", md.toString());
   }
 

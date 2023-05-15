@@ -5,11 +5,21 @@ import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Represents a file with a name and dates created and last modified
+ */
 public abstract class FileType {
   private String name;
   private FileTime created;
   private FileTime lastModified;
 
+  /**
+   * Constructs a FileType object
+   *
+   * @param name         the name of the file
+   * @param created      the created date of the file
+   * @param lastModified the last modified date of the file
+   */
   public FileType(String name, FileTime created, FileTime lastModified) {
     this.name = name;
     this.created = created;
@@ -51,10 +61,9 @@ public abstract class FileType {
   public abstract String toString();
 
   /**
-   * Adds data from a string to a FileType object
+   * Adds data from a string to this FileType object
    *
    * @param file the string to be parsed
-   * @return A FileType object with the data from the given string
    */
   public abstract void parseFile(String file);
 }

@@ -6,6 +6,11 @@ package cs3500.pa01;
 public enum SortOrder {
   NAME, CREATED, LASTMODIFIED, TEST;
 
+  /**
+   * Returns the SortByX object that corresponds to this SortOrder.
+   *
+   * @return the SortByX object that corresponds to this SortOrder.
+   */
   public SortByX getSortBy() {
     switch (this) {
       case NAME:
@@ -19,6 +24,12 @@ public enum SortOrder {
     }
   }
 
+  /**
+   * Returns the SortOrder that corresponds to the given string.
+   *
+   * @param sortOrder the string to be converted to a SortOrder
+   * @return the SortOrder that corresponds to the given string.
+   */
   public static SortOrder getSortOrder(String sortOrder) {
     switch (sortOrder) {
       case "n":

@@ -2,6 +2,9 @@ package cs3500.pa01;
 
 import java.util.Comparator;
 
+/**
+ * Interface for different sort comparisons.
+ */
 public interface SortByX extends Comparator<MarkDown> {
   /**
    * Compares its two arguments for order.  Returns a positive integer if the first MarkDown
