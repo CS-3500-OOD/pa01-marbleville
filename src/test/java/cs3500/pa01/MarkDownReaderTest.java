@@ -121,7 +121,8 @@ class MarkDownReaderTest {
     }
     assertEquals("studyGuide", mdrCreated.toSingleMarkDown().getName());
     assertEquals(17, mdrCreated.toSingleMarkDown().getUnits().size());
-    assertEquals(mdrCreated.toSingleMarkDown().toString().split("\n")[0], "# Java Arrays");
+    assertEquals(mdrCreated.toSingleMarkDown().toString().split("\n")[0],
+        "# Vectors");
     assertTrue(walkSuccess);
   }
 
