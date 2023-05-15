@@ -1,16 +1,17 @@
 package cs3500.pa01;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.attribute.FileTime;
 import java.time.Instant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class SortByXTest {
+class SortByTest {
   SortByX sortByCreated;
   SortByX sortByName;
   SortByX sortByModified;
+
   @BeforeEach
   public void setUp() {
     sortByCreated = new SortByCreated();
@@ -71,5 +72,4 @@ class SortByXTest {
     assertEquals(-13, sortByName.compare(m1, m2));
     assertEquals(13, sortByName.compare(m2, m1));
   }
-
 }
