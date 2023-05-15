@@ -51,32 +51,10 @@ public abstract class FileType {
     public abstract String toString();
 
     /**
-     * Parses a string into a FileType object
+     * Adds data from a string to a FileType object
      *
-     * @param file     the string to be parsed
-     * @param attr     the attributes of the file
-     * @param fileName the name of the file
+     * @param file the string to be parsed
      * @return A FileType object with the data from the given string
      */
-    public abstract FileType parseFile(String file, BasicFileAttributes attr, String fileName);
-
-    /**
-     * Calls parseFile on the correct FIleType based on the given file
-     *
-     * @param file     the string to be parsed
-     * @param attr     the attributes of the file
-     * @param fileName the name of the file
-     * @return A FileType object with the data from the given string
-     */
-    public static FileType getFile(String file, BasicFileAttributes attr, String fileName) {
-        switch (fileName.substring(fileName.lastIndexOf(".") + 1)) {
-            case "md":
-                return new MarkDown(fileName, attr.creationTime(),
-                    attr.lastModifiedTime()).parseFile(file, attr, fileName);
-            default:
-                throw new IllegalArgumentException("Invalid file type");
-        }
-    }
-
-    public abstract ArrayList<FileUnit> getUnits();
+    public abstract void parseFile(String file);
 }

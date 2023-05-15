@@ -11,8 +11,8 @@ import java.util.Scanner;
 /**
  * Abstract class to read and process the file system
  */
-public abstract class FileSystemReader implements FileVisitor<Path> {
-    private ArrayList<FileType> files = new ArrayList<>();
+public abstract class FileSystemReader<T> implements FileVisitor<Path> {
+    private ArrayList<T> files = new ArrayList<>();
 
 
     /**
@@ -20,7 +20,7 @@ public abstract class FileSystemReader implements FileVisitor<Path> {
      *
      * @param file to be added
      */
-    public void addFile(FileType file) {
+    public void addFile(T file) {
         this.files.add(file);
     }
 
@@ -42,11 +42,15 @@ public abstract class FileSystemReader implements FileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFileFailed(Path file, IOException exc) {
-        System.err.println(exc);
+        System.err.println(errorMessage(exc));
         return FileVisitResult.CONTINUE;
     }
 
-    public ArrayList<FileType> getFiles() {
+    public ArrayList<T> getFiles() {
         return this.files;
+    }
+
+    public static String errorMessage(IOException err) {
+        return err.toString();
     }
 }

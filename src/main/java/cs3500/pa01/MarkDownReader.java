@@ -1,19 +1,21 @@
 package cs3500.pa01;
 
+import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.time.Instant;
+import java.util.Scanner;
 
 /**
  * A class that reads in a file system and creates a list of MarkDown files.
  */
-public class MarkDownReader extends FileSystemReader {
+public class MarkDownReader extends FileSystemReader<MarkDown> {
     private SortByX sortBy;
     private SortOrder sortOrder;
 
-    public MarkDownReader(SortOrder sortBy, String path) {
+    public MarkDownReader(SortOrder sortBy) {
         this.sortBy = sortBy.getSortBy();
     }
 
@@ -31,6 +33,19 @@ public class MarkDownReader extends FileSystemReader {
         String[] pathArr = filePath.toString().split("/");
         String fileName = pathArr[pathArr.length - 1];
         MarkDown md = new MarkDown(fileName, attr.creationTime(), attr.lastModifiedTime());
+        StringBuilder file = new StringBuilder();
+        try {
+            Scanner scanner = new Scanner(filePath);
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine() + "\n";
+                file.append(line);
+            }
+            scanner.close();
+        } catch (IOException e) {
+            System.out.println(errorMessage(e));
+        }
+        md.parseFile(file.toString());
         this.addFile(md);
     }
 
@@ -40,12 +55,13 @@ public class MarkDownReader extends FileSystemReader {
      * @return a single MarkDown file
      */
     public MarkDown toSingleMarkDown() {
+        this.getFiles().sort(sortBy);
         MarkDown md =
             new MarkDown("studyGuide",
                 FileTime.from(Instant.now()),
                 FileTime.from(Instant.now()));
-        for (FileType file : this.getFiles()) {
-            for (FileUnit unit : file.getUnits()) {
+        for (MarkDown file : this.getFiles()) {
+            for (MarkDownUnit unit : file.getUnits()) {
                 md.addMDUnit(unit);
             }
         }

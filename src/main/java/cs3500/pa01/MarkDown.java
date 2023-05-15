@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MarkDown extends FileType {
-    private ArrayList<FileUnit> listOfMD = new ArrayList<>();
+    private ArrayList<MarkDownUnit> listOfMD = new ArrayList<>();
 
     public MarkDown(String name, FileTime created, FileTime lastModified) {
         super(name, created, lastModified);
@@ -15,18 +15,21 @@ public class MarkDown extends FileType {
     /**
      * Parses a string into a MarkDown object
      *
-     * @param file     the string to be parsed
-     * @param attr     the attributes of the file
-     * @param fileName the name of the file
+     * @param file the string to be parsed
      * @return A MarkDown object with the data from the given string
      */
-    public MarkDown parseFile(String file, BasicFileAttributes attr, String fileName) {
+    public void parseFile(String file) {
         String[] mdArray = file.split("\n");
-        MarkDown markDown = new MarkDown(fileName, attr.creationTime(), attr.lastModifiedTime());
-        for (String line : mdArray) {
-            markDown.tokenizeLine(line);
+        for (int i = 0; i < mdArray.length; i++) {
+            String line = mdArray[i];
+            // If a line contains "[[" but not "]]", then it is a point that spans multiple lines
+            // and must be put together
+            if (line.contains("[[") && !line.contains("]]")) {
+                line = mdArray[i] + mdArray[i + 1];
+                i++;
+            }
+            this.tokenizeLine(line);
         }
-        return markDown;
     }
 
     /**
@@ -34,7 +37,7 @@ public class MarkDown extends FileType {
      *
      * @param mdUnit the MarkDownUnit to be added
      */
-    public void addMDUnit(FileUnit mdUnit) {
+    public void addMDUnit(MarkDownUnit mdUnit) {
         this.listOfMD.add(mdUnit);
     }
 
@@ -46,7 +49,8 @@ public class MarkDown extends FileType {
     public void tokenizeLine(String line) {
         String[] lineArray = line.split("]]");
         for (String s : lineArray) {
-            if (s.startsWith("[[")) {
+            if (s.contains("[[")) {
+                s = s.substring(s.indexOf("[["));
                 s += "]]";
             }
             if (s.startsWith("#") || s.startsWith("[[")) {
@@ -57,13 +61,20 @@ public class MarkDown extends FileType {
 
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (FileUnit mdUnit : this.listOfMD) {
-            result.append(mdUnit.toString());
+        for (int i = 0; i < this.listOfMD.size(); i++) {
+
+            if (i == listOfMD.size() - 1 || listOfMD.get(i + 1).getTag().contains("#")) {
+                String unitString = this.listOfMD.get(i).toString() + "\n";
+                result.append(unitString);
+            } else {
+                String unitString = this.listOfMD.get(i).toString();
+                result.append(unitString);
+            }
         }
         return result.toString();
     }
 
-    public ArrayList<FileUnit> getUnits() {
+    public ArrayList<MarkDownUnit> getUnits() {
         return this.listOfMD;
     }
 }

@@ -15,7 +15,7 @@ public class StudyGuideGenerator {
     Writer fileWriter;
 
     public StudyGuideGenerator(String inputPath, SortOrder sortBy, String outputPath) {
-        this.markDownReader = new MarkDownReader(sortBy, inputPath);
+        this.markDownReader = new MarkDownReader(sortBy);
         this.inputPath = Path.of(inputPath);
         this.fileWriter = new Writer(outputPath);
     }
@@ -23,12 +23,11 @@ public class StudyGuideGenerator {
     public void generateStudyGuide() {
         try {
             Files.walkFileTree(inputPath, markDownReader);
+            studyGuide = markDownReader.toSingleMarkDown();
+            this.fileWriter.writeFile(this.studyGuide);
         } catch (IOException e) {
-            System.out.println("An error occurred walking the file tree.");
+            System.out.println(FileSystemReader.errorMessage(e));
             e.printStackTrace();
         }
-        studyGuide = markDownReader.toSingleMarkDown();
-        this.fileWriter.writeFile(this.studyGuide);
     }
-
 }

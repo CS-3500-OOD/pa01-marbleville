@@ -4,7 +4,7 @@ package cs3500.pa01;
  * Represents the different ways to sort the study guide.
  */
 public enum SortOrder {
-    NAME, CREATED, LASTMODIFIED;
+    NAME, CREATED, LASTMODIFIED, TEST;
 
     public SortByX getSortBy() {
         switch (this) {

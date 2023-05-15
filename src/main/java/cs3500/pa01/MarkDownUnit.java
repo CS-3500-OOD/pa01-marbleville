@@ -2,7 +2,7 @@ package cs3500.pa01;
 
 import java.lang.reflect.Array;
 
-public class MarkDownUnit implements FileUnit {
+public class MarkDownUnit {
     private String text;
     private String tag;
 
@@ -67,7 +67,7 @@ public class MarkDownUnit implements FileUnit {
      */
     public String toString() {
         if (tag.startsWith("#")) {
-            return tag + " " + text + "\n\n"; // add extra new line after header
+            return tag + " " + text + "\n";
         } else {
             return "- " + text + "\n";
         }

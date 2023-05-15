@@ -18,7 +18,7 @@ public class Writer {
             myWriter.close();
             System.out.println("Successfully wrote study guide to " + outPutPath.toString());
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println(FileSystemReader.errorMessage(e));
             e.printStackTrace();
         }
     }

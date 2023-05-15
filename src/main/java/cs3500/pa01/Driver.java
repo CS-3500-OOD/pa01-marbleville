@@ -12,10 +12,7 @@ public class Driver {
 
     public static void main(String[] args) {
         if (args.length <= 2) {
-            System.out.println("Please enter an \n" +
-                "[input path], \n" +
-                "[sort order (n - name, c - date created, m - date modified)], and an \n" +
-                "[output path]");
+            System.out.println(helpMessage());
         } else {
             try {
                 StudyGuideGenerator sgg =
@@ -25,5 +22,12 @@ public class Driver {
                 System.out.println("Invalid Input");
             }
         }
+    }
+
+    public static String helpMessage() {
+        return "Please enter an \n" +
+            "[input path], \n" +
+            "[sort order (n - name, c - date created, m - date modified)], and an \n" +
+            "[output path]";
     }
 }
