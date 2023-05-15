@@ -25,13 +25,13 @@ class MarkDownReaderTest {
    * Tests that the visitFile and readFile methods work as expected.
    */
   @Test
-  void testVisitFile() {
+  void testReadFile() {
     boolean readSuccess = true;
     // Tests an existing file
     try {
       BasicFileAttributes attr = Files.readAttributes(
           Paths.get("src/test/resources/arrays.md"), BasicFileAttributes.class);
-      mdr.visitFile(Path.of("src/test/resources/arrays.md"), attr);
+      mdr.readFile(Path.of("src/test/resources/arrays.md"), attr);
     } catch (IOException e) {
       readSuccess = false;
     }
