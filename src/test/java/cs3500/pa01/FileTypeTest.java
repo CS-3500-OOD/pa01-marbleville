@@ -41,4 +41,31 @@ class FileTypeTest {
   public void testGetLastModified() {
     assertEquals(FileTime.from(Instant.ofEpochMilli(l1)), ft.getLastModified());
   }
+
+  /**
+   * Tests the setName method for FileType
+   */
+  @Test
+  public void testSetName() {
+    ft.setName("test2.txt");
+    assertEquals("test2.txt", ft.getName());
+  }
+
+  /**
+   * Tests the setCreated method for FileType
+   */
+  @Test
+  public void testSetCreated() {
+    ft.setCreated(FileTime.from(Instant.ofEpochMilli(l1 + 1)));
+    assertEquals(FileTime.from(Instant.ofEpochMilli(l1 + 1)), ft.getCreated());
+  }
+
+  /**
+   * Tests the setLastModified method for FileType
+   */
+  @Test
+  public void testSetLastModified() {
+    ft.setLastModified(FileTime.from(Instant.ofEpochMilli(l1 + 1)));
+    assertEquals(FileTime.from(Instant.ofEpochMilli(l1 + 1)), ft.getLastModified());
+  }
 }
